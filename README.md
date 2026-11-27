@@ -1,18 +1,21 @@
-# Mikro Fraktal — MVP
+# Mikro Fraktal — GitHub Pages yaması
 
-React + Vite browser fractal explorer. MVP includes Mandelbrot/Julia rendering via a Web Worker, interactive zoom, Julia parameter controls, iterations, simple palettes, saved explorations (local storage), and PNG export.
+Bu yama, mevcut React + Vite projesini GitHub Pages üzerinde otomatik derleyip yayınlamak için gereken yapılandırmayı ekler.
 
-## Run
+## Uygulama
 
-```bash
-npm install
-npm run dev
-```
+1. ZIP içeriğini depo ana dizinine yükleyin. `vite.config.js`, `package.json` ile aynı seviyede; `.github/workflows/deploy.yml` ise belirtilen klasör yapısında olmalıdır.
+2. Mevcut `src/`, `package.json` ve `index.html` dosyalarını silmeyin.
+3. GitHub deposunda **Settings → Pages → Build and deployment → Source** alanını **GitHub Actions** yapın.
+4. Deponun varsayılan dalına commit gönderin. **Actions** sekmesinde `Deploy Mikro Fraktal to GitHub Pages` akışının tamamlanmasını beklemeden sayfayı yenilemeyin; yayın URL'si Pages bölümünde görünür.
 
-## Notes / limitations
-- Current MVP implements Mandelbrot and Julia only; Burning Ship, Tricorn, Newton, IFS/L-systems and 3D fractals are not included.
-- Pan, selection zoom, deep-zoom precision, progressive/tiled render scheduling, palette editing, animations, and gallery metadata sidecars are future work.
-- Worker keeps computation off the main UI thread; a new render terminates the previous one.
-- Rendering uses standard JS floating point, so extreme zooms are limited.
-- PNG export is the canvas result at the current render dimensions; larger export presets are not yet implemented.
-- Saved presets are stored locally in the browser.
+## Bu yama ne yapar?
+
+- `vite.config.js` içindeki `base: './'`, dosya yollarını göreli hale getirir. Böylece proje kök alan adında veya `/<depo-adı>/` altında açılabilir.
+- Actions önce `npm install` ve `npm run build` çalıştırır.
+- Yalnızca Vite'ın ürettiği `dist/` klasörü Pages'e yüklenir. Kaynak `src/main.jsx` dosyası doğrudan tarayıcıya servis edilmez.
+- Yayınlama yalnızca deponun varsayılan dalında yapılır. İş akışı varsayılan dalı otomatik belirler.
+
+## Not
+
+İş akışı `package.json` içindeki `build` komutunu kullanır. Projenin mevcut kaynak kodu ve Fraktal hesaplama mantığı bu yamada değiştirilmemiştir.

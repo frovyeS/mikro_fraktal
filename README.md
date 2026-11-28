@@ -1,21 +1,40 @@
-# Mikro Fraktal — GitHub Pages yaması
+# Mikro Fraktal
 
-Bu yama, mevcut React + Vite projesini GitHub Pages üzerinde otomatik derleyip yayınlamak için gereken yapılandırmayı ekler.
+Tarayıcıda çalışan, hızlı ve hassas **Mandelbrot** ve **Julia** fraktal gezgini. React + Vite ile yazıldı, GitHub Pages üzerinde otomatik yayınlanır. Hem telefonda hem bilgisayarda kullanılır; açık ve koyu tema desteklenir.
 
-## Uygulama
+## Kullanım
 
-1. ZIP içeriğini depo ana dizinine yükleyin. `vite.config.js`, `package.json` ile aynı seviyede; `.github/workflows/deploy.yml` ise belirtilen klasör yapısında olmalıdır.
-2. Mevcut `src/`, `package.json` ve `index.html` dosyalarını silmeyin.
-3. GitHub deposunda **Settings → Pages → Build and deployment → Source** alanını **GitHub Actions** yapın.
-4. Deponun varsayılan dalına commit gönderin. **Actions** sekmesinde `Deploy Mikro Fraktal to GitHub Pages` akışının tamamlanmasını beklemeden sayfayı yenilemeyin; yayın URL'si Pages bölümünde görünür.
+| Eylem | Masaüstü | Dokunmatik |
+| --- | --- | --- |
+| Gezin | Sürükle | Sürükle |
+| Yakınlaş / uzaklaş | Tekerlek, + / − | Çimdik, alttaki + / − |
+| Hızlı büyüt | Çift tık | Çift dokun |
+| Julia noktası seç | Alttaki hedef simgesi (Mandelbrot'ta) | Alttaki hedef simgesi |
+| Geri al | Z | Alttaki geri oku |
 
-## Bu yama ne yapar?
+Ayarlar panelinde tema (Sistem, Açık, Koyu), hazır konumlar, Julia parametresi, iterasyon (otomatik veya elle), kalite, 7 renk paleti, renk yoğunluğu ve kaydırma, kayıtlı çalışmalar ve teknik bilgiler bulunur. Üst çubuktan görünümü kaydedebilir, PNG indirebilir, temayı değiştirebilirsin. Panelden **Bağlantıyı kopyala** ile tam konumu bir bağlantı olarak paylaşabilirsin.
 
-- `vite.config.js` içindeki `base: './'`, dosya yollarını göreli hale getirir. Böylece proje kök alan adında veya `/<depo-adı>/` altında açılabilir.
-- Actions önce `npm install` ve `npm run build` çalıştırır.
-- Yalnızca Vite'ın ürettiği `dist/` klasörü Pages'e yüklenir. Kaynak `src/main.jsx` dosyası doğrudan tarayıcıya servis edilmez.
-- Yayınlama yalnızca deponun varsayılan dalında yapılır. İş akışı varsayılan dalı otomatik belirler.
+Klavye: oklar gezin, + / − yakınlaş, 0 sıfırla, Z geri, P ayarlar, T tema.
 
-## Not
+## GitHub Pages ile yayınlama (terminal gerekmez)
 
-İş akışı `package.json` içindeki `build` komutunu kullanır. Projenin mevcut kaynak kodu ve Fraktal hesaplama mantığı bu yamada değiştirilmemiştir.
+1. Bu ZIP'i aç, içindeki dosya ve klasörlerin hepsini deponun ana dizinine yükle (GitHub'da **Add file → Upload files**). Aynı isimli dosyaların üzerine yazılır, bir şey silmen gerekmez.
+2. **Settings → Pages → Build and deployment → Source** alanında **GitHub Actions** seçili olsun.
+3. Commit et. **Actions** sekmesinde `Deploy Mikro Fraktal to GitHub Pages` akışı bitince adres Pages bölümünde görünür.
+
+## Dosya yapısı
+
+```
+index.html              Giriş sayfası (tema ve ikon tanımları)
+vite.config.js          base: './' (alan adı kökünde veya /depo-adı/ altında çalışır)
+public/                 Favori ikonu, uygulama ikonları, manifest
+src/main.jsx            Uygulamayı başlatır
+src/App.jsx             Durum, geçmiş, tema, kayıtlar, klavye
+src/style.css           Tüm stiller (açık/koyu tema, mobil alt sayfa)
+src/worker.js           Fraktal hesaplama (Web Worker)
+src/components/         FractalCanvas (hareketler), Inspector (ayarlar), Icons (SVG), ui
+src/lib/                Paletler, işçi havuzu, biçimleme, depolama, bağlantı paylaşımı
+.github/workflows/main.yml   Otomatik derleme ve yayın
+```
+
+Tüm simgeler satır içi SVG'dir; emoji kullanılmaz. Hesaplama tamamen tarayıcıda yapılır, veri dışarı gönderilmez.

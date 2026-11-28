@@ -1,13 +1,14 @@
-MIKRO FRAKTAL — GITHUB PAGES YAMASI
+MIKRO FRAKTAL — GÜNCELLEME KURULUMU (terminal gerekmez)
 
 1) Bu ZIP'i açın.
-2) İçindeki vite.config.js dosyasını depo ana dizinine yükleyin (package.json ile aynı seviyede).
-3) .github/workflows/deploy.yml dosyasını aynı klasör yolu korunacak şekilde yükleyin.
-4) README.md dosyasını isterseniz eskisinin üzerine yazın.
-5) GitHub > Settings > Pages > Build and deployment > Source alanında GitHub Actions seçin.
-6) Deponun varsayılan dalına commit gönderin. Actions sekmesinden "Deploy Mikro Fraktal to GitHub Pages" akışını kontrol edin.
+2) GitHub'da deponuzu açın: Add file > Upload files.
+3) ZIP'ten çıkan TÜM dosya ve klasörleri (index.html, package.json, vite.config.js, public, src, README.md ...) sürükleyip bırakın.
+   Aynı isimli dosyaların üzerine yazılır; eski dosyaları silmeniz gerekmez.
+4) "Commit changes" deyin.
+5) Settings > Pages > Build and deployment > Source alanında "GitHub Actions" seçili olsun.
+6) Actions sekmesinde "Deploy Mikro Fraktal to GitHub Pages" akışının bitmesini bekleyin; adres Pages bölümünde görünür.
 
-ÖNEMLİ:
-- src klasörünü, package.json dosyasını ve mevcut index.html dosyasını silmeyin.
-- ZIP dosyasının kendisini depoya yüklemeyin; içindeki dosyaları doğru klasör yollarıyla yükleyin.
-- Actions çıktısı başarılı olmadan sitenin yayınlanmasını beklemeyin.
+NOT:
+- .github/workflows/main.yml dosyası önceki ile aynıdır. Deponuzda zaten varsa tekrar yüklemeniz gerekmez.
+  (Nokta ile başlayan klasörler bazı sistemlerde gizli görünür; .github klasörü görünmüyorsa gizli dosyaları açın.)
+- ZIP dosyasının kendisini depoya yüklemeyin; içindeki dosyaları yükleyin.

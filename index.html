@@ -1,1 +1,36 @@
-<!doctype html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mikro Fraktal</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Mikro Fraktal</title>
+    <meta name="description" content="Tarayıcıda çalışan hızlı ve hassas Mandelbrot ve Julia fraktal gezgini." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f5f7" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mikro Fraktal" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <script>
+      (function () {
+        try {
+          var t = JSON.parse(localStorage.getItem('mikrofraktal-theme')) || 'system';
+          var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var root = document.documentElement;
+          root.setAttribute('data-theme', dark ? 'dark' : 'light');
+          root.style.colorScheme = dark ? 'dark' : 'light';
+          var m = document.querySelector('meta[name=theme-color]');
+          if (m) m.setAttribute('content', dark ? '#000000' : '#f5f5f7');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Mikro Fraktal çalışmak için JavaScript gerektirir.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
